@@ -9,5 +9,5 @@ use App\Http\Controllers\ViewController;
 // });
 
 Route::get('/register',[ViewController::class,'register'])->name('RegisterForm');
-Route::get('/',[ViewController::class,'index'])->name('LoginForm');
+Route::get('/',[ViewController::class,'index'])->name('login');
 Route::get('/dashboard',[ViewController::class,'dashboard'])->name('Dashboard');
