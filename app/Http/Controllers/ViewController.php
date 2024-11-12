@@ -19,4 +19,13 @@ class ViewController extends Controller
     public function dashboard(){
         return view('dashboard');
     }
+
+
+    public function addProduct(){
+        return view('addProduct');
+    }
+
+    public function viewProduct(){
+        return view('viewProduct');
+    }
 }

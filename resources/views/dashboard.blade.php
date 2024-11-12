@@ -7,9 +7,6 @@
 </head>
 <body>
     <h1>Product List</h1>
-    <h1>&#129313;</h1>
-    <h1>&#129313;</h1>
-    <h1>&#129313;</h1>
     <div id="product-list">
     
     </div>
@@ -39,15 +36,28 @@
             .then(data => {
                 if(data.success){
                     const productList = data.data;
-                    const productListDiv = document.getElementById('product-list');
+                    const table = document.createElement('table');
+                    table.border = "1";
+                    table.innerHTML = `
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Product Detail</th>
+                            <th>View Product</th>
+                        </tr>
+                    `;
+
+                    // 遍历 productList，为每个产品创建一行
                     productList.forEach(product => {
-                        const productDiv = document.createElement('div');
-                        productDiv.innerHTML =
-                        `<p>Product Name : ${product.name}</p> <br>
-                         <p>Product Detail : ${product.detail}</p><br>
-                        `
-                        productListDiv.appendChild(productDiv);
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${product.name}</td>
+                            <td>${product.detail}</td>
+                           <td><a href="{{ url('viewProduct') }}?id=${product.id}">View Product</a></td>
+                        `;
+                        table.appendChild(row);
                     });
+
+                    document.getElementById('product-list').appendChild(table);
                 }else{
                     alert('Error fetching products: ' + data.message);
                 }
